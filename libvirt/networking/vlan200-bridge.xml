@@ -1,0 +1,5 @@
+<network>
+  <name>vlan-200</name>
+  <forward mode="bridge"/>
+  <bridge name="br0.200"/>
+</network>
