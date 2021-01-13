@@ -2,7 +2,7 @@
 - name: Enable Fedora Copr for system76 drivers and firmware
   command:
      cmd: dnf copr enable -y szydell/system76 
-     creates: /etc/yum.repos.d/_co.repo
+     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:szydell:system76.repo
 
 - name: Install drivers and firmware software
   dnf:
