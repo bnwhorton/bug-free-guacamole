@@ -1,0 +1,46 @@
+---
+- name: Enable Fedora Copr for system76 drivers and firmware
+  command:
+     cmd: dnf copr enable -y szydell/system76 
+     creates: /etc/yum.repos.d/_co.repo
+
+- name: Install drivers and firmware software
+  dnf:
+    name:
+      - system76-dkms
+      - system76-power
+      - system76-driver
+      - system76-firmware
+      - firmware-manager
+      - system76-io-dkms
+    state: latest
+
+- name: Enable System76 power wake daemons
+  systemd:
+     name: system76-power-wake
+     enabled: true
+ 
+- name: Enable and start System76 power daemons
+  systemd:
+     name: system76-power
+     enabled: true
+     state: started
+ 
+- name: Enable and start System76 firmware daemons
+  systemd:
+     name: system76-firmware-daemon
+     enabled: true
+     state: started
+
+- name: Enable System76 firmware timer
+  systemd:
+     name: com.system76.FirmwareManager.Notify.timer 
+     enabled: true
+     scope: user
+
+- name: Tell System76 to use intergrated graphics
+  command:
+     cmd: system76-power graphics integrated
+
+- name: reboot host
+  reboot:

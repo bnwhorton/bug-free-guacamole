@@ -1,0 +1,6 @@
+---
+- name: Frist step in setting up a system76 laptop with fedoar 33
+  hosts: localhost
+  become: true
+  roles:
+    - role: setup-f33
