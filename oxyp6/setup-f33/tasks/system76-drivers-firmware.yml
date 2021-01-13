@@ -37,6 +37,7 @@
      name: com.system76.FirmwareManager.Notify.timer 
      enabled: true
      scope: user
+  become: false
 
 - name: Tell System76 to use intergrated graphics
   command:
